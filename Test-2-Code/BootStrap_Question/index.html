@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Navbar and Cards</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card-img-top {
+      height: 290px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<!-- <p>1. Create a Bootstrap NavBar, showing Navbar links on large screens and a nav icon on small screens.</p> -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MySite</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- <p>2. Create a Responsive Grid Layout with 3 Cards Using Bootstrap 5.</p> -->
+  <div class="container py-5">
+    <div class="row g-4">
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card">
+          <img src="./image/Nature2.jpeg" class="card-img-top" alt="Nature6">
+          <div class="card-body">
+            <h5 class="card-title">Card One</h5>
+            <p class="card-text">This is a sample card description for the first card.</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card">
+          <img src="./Image/Nature4.jpg" width="500" height="200" class="card-img-top" alt="Nature4">
+          <div class="card-body">
+            <h5 class="card-title">Card Two</h5>
+            <p class="card-text">This is a sample card description for the second card.</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card">
+          <img src="./image/Nature3.jpeg" class="card-img-top" alt="Nature1">
+          <div class="card-body">
+            <h5 class="card-title">Card Three</h5>
+            <p class="card-text">This is a sample card description for the third card.</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

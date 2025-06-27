@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Units: px, em, rem, %</title>
+  <style>
+    html {
+      font-size: 16px; 
+    }
+
+    body {
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .box {
+      margin: 15px 0;
+      padding: 12px 16px;
+      border-left: 5px solid steelblue;
+      background-color: #e6f2ff;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    
+    
+    
+    
+    .px-box {
+      font-size: 20px;
+      width: 200px;
+    }
+
+
+
+
+    .em-parent {
+      font-size: 18px;
+    }
+    .em-box {
+      font-size: 1.5em; 
+      width: 10em;      
+      background-color: #fff3cd;
+      border-left-color: orange;
+    }
+
+
+    .rem-box {
+      font-size: 1.5rem;  
+      width: 20rem;      
+      background-color: #d4edda;
+      border-left-color: green;
+    }
+
+    .percent-container {
+      width: 400px;
+      background-color: #eee;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    .percent-box {
+      font-size: 120%;    
+      width: 50%;       
+      background-color: #f8d7da;
+      border-left-color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>CSS Units Demo: px, em, rem, %</h2>
+
+  <div class="box px-box">
+    <strong>PX:</strong> Font size = <code>20px</code>, Width = <code>200px</code> (fixed)
+  </div>
+
+  <div class="em-parent">
+    <div class="box em-box">
+      <strong>EM:</strong> Font size = <code>1.5em</code> (relative to 18px parent), Width = <code>10em</code>
+    </div>
+  </div>
+
+  <div class="box rem-box">
+    <strong>REM:</strong> Font size = <code>1.5rem</code> (relative to root 16px), Width = <code>20rem</code>
+  </div>
+
+  <div class="percent-container">
+    <div class="box percent-box">
+      <strong>%:</strong> Font size = <code>120%</code>, Width = <code>50%</code> of parent (400px)
+    </div>
+  </div>
+
+</body>
+</html>

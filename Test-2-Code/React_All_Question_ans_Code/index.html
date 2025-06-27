@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>React Task Showcase</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+    }
+    header {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white; padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .card {
+      background: white;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .card:hover {
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #333;
+      border-left: 4px solid #4facfe;
+      padding-left: 10px;
+    }
+    input, button {
+      padding: 8px 12px;
+      margin-top: 8px;
+      margin-right: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background-color: #4facfe;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #00c2ff;
+    }
+    button:disabled {
+      background-color: #bbb;
+      cursor: not-allowed;
+    }
+    ul { padding-left: 18px; }
+  </style>
+</head>
+<body>
+
+  <header>React Tasks Showcase</header>
+  <div id="root" class="container"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const Card = ({ title, children }) => (
+      <div className="card">
+        <h2>{title}</h2>
+        {children}
+      </div>
+    );
+
+    // 1. Create a component with a button that increases a count value using useState. Display the count on the screen.
+    const Counter = () => {
+      const [count, setCount] = useState(0);
+      return (
+        <Card title="1. Counter with Increase and Reset">
+          <p>Count: {count}</p>
+          <button onClick={() => setCount(count + 1)}>Increase</button>
+          <button onClick={() => setCount(0)}>Reset</button>
+        </Card>
+      );
+    };
+
+
+
+
+    // 2. Create a component with a button. On each click, toggle between "Hello" and "Welcome Back" using useState.
+    const ToggleMessage = () => {
+      const [message, setMessage] = useState("Hello");
+      return (
+        <Card title="2. Toggle 'Hello' and 'Welcome Back'">
+          <p>{message}</p>
+          <button onClick={() => setMessage(msg => msg === "Hello" ? "Welcome Back" : "Hello")}>
+            Toggle
+          </button>
+        </Card>
+      );
+    };
+
+
+
+
+
+    // 3. Create a ParentComponent and a ChildComponent. Pass the message "Good morning" as a prop from the parent to the child, and display it in the child component.
+    const ParentComponent = () => {
+      const [show, setShow] = useState(false);
+      return (
+        <Card title="3. Show Message with Button">
+          <button onClick={() => setShow(true)}>Show Message</button>
+          {show && <ChildComponent message="Good morning" />}
+        </Card>
+      );
+    };
+    const ChildComponent = ({ message }) => <p>{message}</p>;
+
+
+
+
+    //  Q4 - 4. Create three components: GrandParent ➝ Parent ➝ Child. Pass a message "Hello from GrandParent" from GrandParent to Child using props.
+    const GrandParent = () => <Card title="4. Grand Parent ➝ Child Prop"><Parent message="Hello from Grand Parent" /></Card>;
+    const Parent = ({ message }) => <Child message={message} />;
+    const Child = ({ message }) => <p>{message}</p>;
+
+
+
+
+
+
+    //  Q5 - Name List
+    const NameList = () => {
+      const names = ["John", "Jane", "Alex"];
+      return (
+        <Card title="5. Render List from Array">
+          <ul>{names.map((name, i) => <li key={i}>{name}</li>)}</ul>
+        </Card>
+      );
+    };
+
+    //  Q6  Create a checkbox. If it is checked, display the message "You checked the box!"
+    const CheckboxMessage = () => {
+      const [checked, setChecked] = useState(false);
+      return (
+        <Card title="6. Checkbox Display Message">
+          <label>
+            <input type="checkbox" onChange={(e) => setChecked(e.target.checked)} /> Check Me
+          </label>
+          {checked && <p>You checked the box!</p>}
+        </Card>
+      );
+    };
+
+
+
+
+
+    // 7. What are controlled components in React? Create an example using an input field.
+    const ControlledInput = () => {
+      const [value, setValue] = useState("");
+      return (
+        <Card title="7. Controlled Input Field">
+          <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Type something..." />
+          <p>You typed: {value}</p>
+        </Card>
+      );
+    };
+
+
+
+
+    // 8. Build a reusable InputField component. It should accept label, placeholder, name, and onChange as props.
+    const ReusableInput = () => {
+      const handleChange = (e) => console.log("Input:", e.target.value);
+      return (
+        <Card title="8. Reusable InputField">
+          <InputField label="Name:" name="name" placeholder="Enter name" onChange={handleChange} />
+        </Card>
+      );
+    };
+    const InputField = ({ label, placeholder, name, onChange }) => (
+      <div>
+        <label>{label}</label><br />
+        <input name={name} placeholder={placeholder} onChange={onChange} />
+      </div>
+    );
+
+
+
+
+
+    // 9. Implement a login form that disables the submit button until both input fields are filled.
+    const LoginForm = () => {
+      const [username, setUsername] = useState('');
+      const [password, setPassword] = useState('');
+      const [error, setError] = useState('');
+
+      const handleLogin = () => {
+        if (!username || !password) {
+          setError("Login Failed: Please fill both fields.");
+        } else {
+          setError("");
+          alert("Login Success!");
+        }
+      };
+
+      return (
+        <Card title="9. Login Form with Validation">
+          <input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br />
+          <button onClick={handleLogin}>Login</button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+        </Card>
+      );
+    };
+
+
+
+
+    //10. Create a list of items with a delete button for each. Use useState to update the UI when an item is deleted.
+    const ItemList = () => {
+      const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
+      const deleteItem = (index) => setItems(items.filter((_, i) => i !== index));
+      return (
+        <Card title="10. List with Delete Button">
+          <ul>{items.map((item, i) => <li key={i}>{item} <button onClick={() => deleteItem(i)}>Delete</button></li>)}</ul>
+        </Card>
+      );
+    };
+
+
+
+
+
+
+    // 11. Create a Todo App with "Add" and "Delete" functionality using useState. 
+    const TodoApp = () => {
+      const [todos, setTodos] = useState([]);
+      const [input, setInput] = useState('');
+      const addTodo = () => {
+        if (input.trim()) {
+          setTodos([...todos, input]);
+          setInput('');
+        }
+      };
+      const deleteTodo = (index) => setTodos(todos.filter((_, i) => i !== index));
+      return (
+        <Card title="11. Todo App (Add/Delete)">
+          <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="New task..." />
+          <button onClick={addTodo}>Add</button>
+          <ul>{todos.map((todo, i) => (
+            <li key={i}>{todo} <button onClick={() => deleteTodo(i)}>Delete</button></li>
+          ))}</ul>
+        </Card>
+      );
+    };
+
+
+
+
+    // ✅ 12. Implement a counter that increases on click and resets to 0 if it reaches 10
+    const ResetCounter = () => {
+      const [count, setCount] = useState(0);
+      const increment = () => setCount(prev => prev >= 10 ? 0 : prev + 1);
+      return (
+        <Card title="12. Counter with Reset at 10">
+          <p>{count}</p>
+          <button onClick={increment}>Click Me</button>
+        </Card>
+      );
+    };
+
+
+
+    
+    const App = () => (
+      <>
+        {/*<Counter />*/}
+        {/*<ToggleMessage />*/}
+        {/*<ParentComponent />*/}
+        {/*<GrandParent />*/}
+        {/*<NameList />*/}
+        {/*<CheckboxMessage />*/}
+        {/*<ControlledInput />*/}
+        {/*<ReusableInput />*/}
+        {/*<LoginForm />*/}
+        {/*<ItemList />*/}
+        {/*<TodoApp />*/}
+        {<ResetCounter />}
+      </>
+    );
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
